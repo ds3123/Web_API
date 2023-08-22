@@ -2,26 +2,30 @@
 # @Author : DS
 
 import pymysql
-
+import os
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm import Session
+from dotenv import load_dotenv
 
+
+# 下載環境變數
+load_dotenv()
 
 
 # 使用 pymysql 作為 MySQLdb
 pymysql.install_as_MySQLdb()
 
+username = os.getenv( 'DB_USERNAME' )
+password = os.getenv( 'DB_PASSWORD' )
+host     = os.getenv( 'DB_HOST' )
+database = os.getenv( 'DB_DATABASE' )
 
 
 
 # 建立 _ 資料庫引擎 ( 指定所要連結的 MySQL 資料庫 : gogopark_ts  )
-#engine = create_engine( "mysql://root:root@localhost:8889/e_web" )
+engine = create_engine( f"mysql://{ username }:{ password }@{ host }/{ database }" )
 
-
-engine = create_engine( "mysql://dannyshih:Ds31230125@db-web-api.mysql.database.azure.com/e_web" )
-
-#cnx = mysql.connector.connect(user="dannyshih", password="Ds31230125", host="db-web-api.mysql.database.azure.com", port=3306, database="e_web", ssl_ca="{ca-cert filename}", ssl_disabled=False)
 
 
 
