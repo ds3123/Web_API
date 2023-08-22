@@ -22,7 +22,6 @@ host     = os.getenv( 'DB_HOST' )
 database = os.getenv( 'DB_DATABASE' )
 
 
-
 # 建立 _ 資料庫引擎 ( 指定所要連結的 MySQL 資料庫 : gogopark_ts  )
 engine = create_engine( f"mysql://{ username }:{ password }@{ host }/{ database }" )
 
