@@ -26,8 +26,6 @@ database = os.getenv( 'DB_DATABASE' )
 engine = create_engine( f"mysql://{ username }:{ password }@{ host }/{ database }" )
 
 
-
-
 # 建立 _ Session 類別
 SessionLocal = sessionmaker( bind = engine )
 
@@ -35,7 +33,7 @@ SessionLocal = sessionmaker( bind = engine )
 # 依賴函式
 async def get_db() :
 
-    # 實體化 _ Session 類別，取得 _ 資料庫物件 ( 進行各種 CRUD )
+    # 實體化 _ Session 類別物件 --> 取得 _ 資料庫物件 ( 進行各種 CRUD )
     db : Session = SessionLocal()
 
     try :

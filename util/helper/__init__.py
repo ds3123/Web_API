@@ -2,5 +2,5 @@
 # @Author : DS
 
 
-from .tool import *
+from .hash import *
 from .pagination import *

@@ -4,4 +4,9 @@ pymysql
 sqlalchemy
 python-dotenv
 passlib
+bcrypt
+python-jose
+python-multipart
+
+
 
