@@ -12,7 +12,6 @@ from dotenv import load_dotenv
 # 下載環境變數
 load_dotenv()
 
-
 # 使用 pymysql 作為 MySQLdb
 pymysql.install_as_MySQLdb()
 
