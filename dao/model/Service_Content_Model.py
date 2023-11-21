@@ -21,7 +21,7 @@ class Service_Content_Model( Base_Model ) :
     __table_args__ = { "comment": "服務項目 : 內容 ( 選項 ) " }  # 資料表備註
 
     id             = Column( Integer , primary_key = True , autoincrement = True ) # 主鍵
-    service_id     = Column( Integer , ForeignKey( "services.id" ) , nullable = False , comment = "所屬服務項目 id" )  # 所屬服務項目 id
+    service_id     = Column( Integer , ForeignKey( "services.id" , ondelete = "CASCADE" ) , nullable = False , comment = "所屬服務項目 id" )  # 所屬服務項目 id
 
     content        = Column( String( 50 ) , nullable = False , comment = "服務項目 ( 項目 ) 名稱"  )  # 服務項目 ( 項目 ) 名稱
 

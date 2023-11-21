@@ -59,7 +59,6 @@ def read_employee_by_login( account : str , password : str , db : Session ) :
             }
 
 
-
 # 讀取 _ 特定店家，所有員工
 def read_account_all_employees( db : Session , account_id : str ) :
 

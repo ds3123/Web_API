@@ -20,7 +20,7 @@ class Service_Model( Base_Model ) :
     __table_args__ = { "comment" : "服務項目" }  # 資料表備註
 
     id             = Column( Integer , primary_key = True , autoincrement = True ) # 主鍵
-    account_id     = Column( Integer , ForeignKey( "accounts.id" ) , nullable = False , comment = "所屬店家 id" )  # 所屬店家 id
+    account_id     = Column( Integer , ForeignKey( "accounts.id" , ondelete = "CASCADE" ) , nullable = False , comment = "所屬店家 id" )  # 所屬店家 id
 
     name           = Column( String( 50 ) , unique = True , nullable = False , comment = "服務名稱"  )  # 服務名稱
 
@@ -30,9 +30,9 @@ class Service_Model( Base_Model ) :
     # [ 關聯 ]
     account         = relationship( "Account_Model"         , back_populates = "service" )  # 店家帳號
 
-    service_content = relationship( "Service_Content_Model" , back_populates = "service" , cascade = "all,delete-orphan" )  # 服務內容 ( 項目 )
-    service_order   = relationship( "Service_Order_Model"   , back_populates = "service" , cascade = "all,delete-orphan" )  # 服務項目 : 訂單
-    service_price   = relationship( "Service_Price_Model"   , back_populates = "service" , cascade = "all,delete-orphan" )  # 服務項目 : 價格
+    service_content = relationship( "Service_Content_Model" , back_populates = "service" )  # 服務內容 ( 項目 )
+    service_order   = relationship( "Service_Order_Model"   , back_populates = "service" )  # 服務項目 : 訂單
+    service_price   = relationship( "Service_Price_Model"   , back_populates = "service" )  # 服務項目 : 價格
 
 
     # 回傳 _ Model : 所有屬性

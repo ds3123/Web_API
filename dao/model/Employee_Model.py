@@ -5,8 +5,6 @@ from sqlalchemy import Column , String , Integer , ForeignKey , Date , Text , TI
 from sqlalchemy.orm import relationship
 from .Base_Model import Base_Model
 
-
-
 '''
 
     @ 店家 _ 員工 / 成員
@@ -19,7 +17,7 @@ class Employee_Model( Base_Model ) :
     __table_args__  = { "comment" : "員工資料表" }  # 資料表備註
 
     id              = Column( Integer , primary_key = True , autoincrement = True )       # 主鍵
-    account_id      = Column( Integer , ForeignKey( "accounts.id" )  , nullable = False , comment = "所屬店家 id"  ) # 所屬店家 id
+    account_id      = Column( Integer , ForeignKey( "accounts.id" , ondelete = "CASCADE" )  , nullable = False , comment = "所屬店家 id"  ) # 所屬店家 id
 
     account         = Column( String( 100 ) , unique = True, nullable = False , comment = "帳號"  ) # 帳號
     password        = Column( String( 150 ) , nullable = False , comment = "密碼" ) # 密碼
@@ -46,7 +44,7 @@ class Employee_Model( Base_Model ) :
     updated_at = Column( TIMESTAMP , nullable = False, server_default = func.current_timestamp(), onupdate = func.current_timestamp())  # 修改時間
 
     # [ 關聯 ]
-    shop_account    = relationship( "Account_Model", back_populates = "employee"   )  # 所屬店家帳號
+    shop_account = relationship( "Account_Model", back_populates = "employee" )  # 所屬店家帳號
 
 
 

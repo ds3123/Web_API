@@ -17,7 +17,7 @@ class Customer_Model( Base_Model ) :
     __table_args__ = { "comment" : "客戶資料表" }   # 資料表備註
 
     id            = Column( Integer , primary_key = True, index = True , autoincrement = True  ) # 主鍵
-    account_id    = Column( Integer , ForeignKey( "accounts.id" ) , nullable = False , comment = "所屬店家 id" ) # 所屬店家 id
+    account_id    = Column( Integer , ForeignKey( "accounts.id" , ondelete = "CASCADE" ) , nullable = False , comment = "所屬店家 id" ) # 所屬店家 id
 
     name          = Column( String( 60 ) , nullable = False , comment = "姓名" ) # 姓名
     sex           = Column( String( 15 ) , nullable = False , comment = "性別" ) # 性別
@@ -31,7 +31,7 @@ class Customer_Model( Base_Model ) :
     email         = Column( String( 100 ) , comment = "Email" )  # Email
     line          = Column( String( 50 )  , comment = "Line"  )  # Line
 
-    note          = Column( Text , comment = "客戶備註" )  # 客戶備註
+    note          = Column( Text , comment = "客戶備註" )         # 客戶備註
 
     is_rejected   = Column( Boolean , default = False , comment = "是否被拒接 _ 0 : 否 , 1 : 是" )  # 是否被拒接
     reject_reason = Column( String( 150 ) , comment = "拒接理由" )   # 拒接理由
@@ -41,14 +41,14 @@ class Customer_Model( Base_Model ) :
 
 
     # [ 關聯 ]
-    account       = relationship( "Account_Model", back_populates = "customer" ) # 所屬店家帳號
-    pet           = relationship( "Pet_Model", back_populates = "customer" , cascade = "all,delete-orphan" ) # 所有寵物
+    account       = relationship( "Account_Model"       , back_populates = "customer"  ) # 所屬店家帳號
+    pet           = relationship( "Pet_Model"           , back_populates = "customer"  ) # 所有寵物
 
-    service_order = relationship( "Service_Order_Model" , back_populates = "customer" , cascade = "all,delete-orphan" ) # 購買 _ 服務項目 : 訂單
-    product_order = relationship( "Product_Order_Model" , back_populates = "customer" , cascade = "all,delete-orphan" ) # 購買 _ 商品項目 : 訂單
+    service_order = relationship( "Service_Order_Model" , back_populates = "customer" )  # 購買 _ 服務項目 : 訂單
+    product_order = relationship( "Product_Order_Model" , back_populates = "customer" )  # 購買 _ 商品項目 : 訂單
 
-    plan_order    = relationship( "Plan_Order_Model"    , back_populates = "customer" , cascade = "all,delete-orphan" ) # 購買 _ 自訂方案 : 訂單
-    plan_record   = relationship( "Plan_Record_Model"   , back_populates = "customer" , cascade = "all,delete-orphan" ) # 使用方案紀錄
+    plan_order    = relationship( "Plan_Order_Model"    , back_populates = "customer" )  # 購買 _ 自訂方案 : 訂單
+    plan_record   = relationship( "Plan_Record_Model"   , back_populates = "customer" )  # 使用方案紀錄
 
 
     # 回傳 _ Model : 所有屬性

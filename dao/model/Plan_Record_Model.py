@@ -21,11 +21,11 @@ class Plan_Record_Model( Base_Model ) :
 
     id               = Column( Integer , primary_key = True , autoincrement = True )  # 主鍵
 
-    plan_order_id    = Column( Integer , ForeignKey( "plan_orders.id" ) ,    nullable = False , comment = "所購買方案 id" )  # 所購買方案 id
-    service_order_id = Column( Integer , ForeignKey( "service_orders.id" ) , nullable = False , comment = "所購買服務 id" )  # 所購買服務 id
+    plan_order_id    = Column( Integer , ForeignKey( "plan_orders.id" , ondelete = "CASCADE" ) ,    nullable = False , comment = "所購買方案 id" )  # 所購買方案 id
 
-    customer_id      = Column( Integer , ForeignKey( "customers.id" ) ,    nullable = False , comment = "使用客戶 id" )  # 使用客戶 id
-    pet_id           = Column( Integer , ForeignKey( "pets.id" ) ,         nullable = False , comment = "使用寵物 id" )  # 使用寵物 id
+    service_order_id = Column( Integer , ForeignKey( "service_orders.id" ) , nullable = False , comment = "所購買服務 id" )  # 所購買服務 id
+    customer_id      = Column( Integer , ForeignKey( "customers.id" ) ,      nullable = False , comment = "使用客戶 id" )  # 使用客戶 id
+    pet_id           = Column( Integer , ForeignKey( "pets.id" ) ,           nullable = False , comment = "使用寵物 id" )  # 使用寵物 id
 
     record_note      = Column( String( 150 ) , comment = "方案使用備註" )  # 方案使用備註
 

@@ -20,10 +20,10 @@ class Service_Order_Model( Base_Model ) :
 
     id             = Column( Integer , primary_key = True , autoincrement = True ) # 主鍵
 
-    account_id     = Column( Integer , ForeignKey( "accounts.id" )  , nullable = False , comment = "所屬店家 id" )     # 所屬店家 id
-    customer_id    = Column( Integer , ForeignKey( "customers.id" ) , nullable = False , comment = "所屬客人 id" )     # 所屬客人 id
-    pet_id         = Column( Integer , ForeignKey( "pets.id" )      , nullable = False , comment = "所屬寵物 id" )     # 所屬寵物 id
-    service_id     = Column( Integer , ForeignKey( "services.id" )  , nullable = False , comment = "所屬服務項目 id" )  # 所屬服務項目 id
+    account_id     = Column( Integer , ForeignKey( "accounts.id"  , ondelete = "CASCADE" )  , nullable = False , comment = "所屬店家 id" )     # 所屬店家 id
+    customer_id    = Column( Integer , ForeignKey( "customers.id" , ondelete = "CASCADE" ) , nullable = False , comment = "所屬客人 id" )     # 所屬客人 id
+    pet_id         = Column( Integer , ForeignKey( "pets.id"      , ondelete = "CASCADE" )      , nullable = False , comment = "所屬寵物 id" )     # 所屬寵物 id
+    service_id     = Column( Integer , ForeignKey( "services.id"  , ondelete = "CASCADE" )  , nullable = False , comment = "所屬服務項目 id" )  # 所屬服務項目 id
 
     service_code   = Column( String( 10 ) , nullable = False , comment = "服務當日處理碼" )                # 當日處理碼
     service_type   = Column( String( 30 ) , nullable = False , comment = "服務 _ 類型 ( 服務第一層分類 )" ) # 服務 _ 類型 ( 服務第一層分類 )
@@ -46,14 +46,14 @@ class Service_Order_Model( Base_Model ) :
     updated_at     = Column( TIMESTAMP , nullable = False, server_default = func.current_timestamp() , onupdate = func.current_timestamp() )  # 修改時間
 
     # [ 關聯 ]
-    account               = relationship( "Account_Model"  , back_populates = "service_order" ) # 店家帳號
-    customer              = relationship( "Customer_Model" , back_populates = "service_order" ) # 店家客戶
-    pet                   = relationship( "Pet_Model"      , back_populates = "service_order" ) # 店家寵物
+    account               = relationship( "Account_Model"               , back_populates = "service_order" ) # 店家帳號
+    customer              = relationship( "Customer_Model"              , back_populates = "service_order" ) # 店家客戶
+    pet                   = relationship( "Pet_Model"                   , back_populates = "service_order" ) # 店家寵物
 
-    service               = relationship( "Service_Model"              , back_populates = "service_order" ) # 服務項目
-    service_order_process = relationship( "Service_Order_Process_Model", back_populates = "service_order" ) # 服務訂單 _ 處理狀況
+    service               = relationship( "Service_Model"               , back_populates = "service_order" ) # 服務項目
+    service_order_process = relationship( "Service_Order_Process_Model" , back_populates = "service_order" ) # 服務訂單 _ 處理狀況
 
-    plan_record           = relationship( "Plan_Record_Model" , back_populates = "service_order" )  # 該服務相對應使用紀錄
+    plan_record           = relationship( "Plan_Record_Model"           , back_populates = "service_order" )  # 該服務相對應使用紀錄
 
 
 

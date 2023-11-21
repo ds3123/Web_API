@@ -28,6 +28,6 @@ class Pet_Species_In( BaseModel ) :
 # 後端 _ 資料庫
 class Pet_Species_Out( BaseModel ) :
 
-    id        : int
-
-    pet_class : Pet_Class  # 所屬寵物種類
+    id          : int
+    pet_species : str
+    pet_class   : Pet_Class  # 所屬寵物種類

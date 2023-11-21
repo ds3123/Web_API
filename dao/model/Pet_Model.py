@@ -21,8 +21,8 @@ class Pet_Model( Base_Model ) :
 
     id          = Column( Integer , primary_key = True , autoincrement = True ) # 主鍵
 
-    account_id  = Column( Integer , ForeignKey( "accounts.id" ) ,  nullable = False , comment = "所屬店家 id" )  # 所屬店家 id
-    customer_id = Column( Integer , ForeignKey( "customers.id" ) , nullable = False , comment = "所屬主人 id" ) # 所屬主人 id
+    account_id  = Column( Integer , ForeignKey( "accounts.id"  , ondelete = "CASCADE" ) , nullable = False , comment = "所屬店家 id" ) # 所屬店家 id
+    customer_id = Column( Integer , ForeignKey( "customers.id" , ondelete = "CASCADE" ) , nullable = False , comment = "所屬主人 id" ) # 所屬主人 id
 
     name        = Column( String( 50 ) , nullable = False , comment = "寵物名字" )  # 名字
     serial      = Column( String( 80 ) , nullable = False , comment = "寵物編號" )  # 編號
@@ -50,10 +50,10 @@ class Pet_Model( Base_Model ) :
     account       = relationship( "Account_Model"       , back_populates = "pet" )  # 店家帳號
     customer      = relationship( "Customer_Model"      , back_populates = "pet" )  # 店家客人
 
-    service_order = relationship( "Service_Order_Model" , back_populates = "pet" , cascade = 'all, delete-orphan' )  # 所屬服務項目 : 訂單
+    service_order = relationship( "Service_Order_Model" , back_populates = "pet" )  # 所屬服務項目 : 訂單
 
-    plan_order    = relationship( "Plan_Order_Model"    , back_populates = "pet" , cascade = "all,delete-orphan" ) # 相關購買方案
-    plan_record   = relationship( "Plan_Record_Model"   , back_populates = "pet" , cascade = "all,delete-orphan" ) # 使用方案紀錄
+    plan_order    = relationship( "Plan_Order_Model"    , back_populates = "pet" ) # 相關購買方案
+    plan_record   = relationship( "Plan_Record_Model"   , back_populates = "pet" ) # 使用方案紀錄
 
 
 

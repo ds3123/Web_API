@@ -20,7 +20,7 @@ class Plan_Content_Model( Base_Model ) :
 
 
     id            = Column( Integer , primary_key = True , autoincrement = True )  # 主鍵
-    plan_id       = Column( Integer , ForeignKey( "plans.id" ) , nullable = False , comment = "所屬自訂方案 id" )  # 所屬自訂方案 id
+    plan_id       = Column( Integer , ForeignKey( "plans.id" , ondelete = "CASCADE" ) , nullable = False , comment = "所屬自訂方案 id" )  # 所屬自訂方案 id
 
     content       = Column( String( 50 ) , nullable = False , comment = "方案項目 ( 項目 ) 名稱" )  # 方案項目 ( 項目 ) 名稱
 

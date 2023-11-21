@@ -20,7 +20,7 @@ class Plan_Price_Model( Base_Model ) :
 
     id              = Column( Integer , primary_key = True , autoincrement = True ) # 主鍵
 
-    plan_id         = Column( Integer , ForeignKey( "plans.id" ) , nullable = False , comment = "所屬方案 id" )  # 所屬方案 id
+    plan_id         = Column( Integer , ForeignKey( "plans.id" , ondelete = "CASCADE" ) , nullable = False , comment = "所屬方案 id" )  # 所屬方案 id
     plan_content_id = Column( Integer , nullable = True , comment = "所屬方案內容 id" )  # 所屬方案內容 id
 
     price           = Column( Integer , nullable = False , comment = "方案 _ 價格" )  # 方案 _ 價格

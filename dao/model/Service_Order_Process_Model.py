@@ -18,9 +18,9 @@ class Service_Order_Process_Model( Base_Model ) :
     __tablename__  = "service_order_processes"              # 指定資料表名稱
     __table_args__ = { "comment" : "服務項目 : 訂單 _ 處理" }  # 資料表備註
 
-    id = Column( Integer , primary_key = True , autoincrement = True )  # 主鍵
+    id               = Column( Integer , primary_key = True , autoincrement = True )  # 主鍵
 
-    service_order_id = Column( Integer , ForeignKey( "service_orders.id" ) , nullable = False , comment = "所屬服務訂單 id" )  # 所屬服務訂單 id
+    service_order_id = Column( Integer , ForeignKey( "service_orders.id" , ondelete = "CASCADE" ) , nullable = False , comment = "所屬服務訂單 id" )  # 所屬服務訂單 id
 
     shop_status      = Column( String( 25 ) , nullable = False , comment = "到店處理 Ex. 尚未到店 / 到店等候中 / 美容中 ..." )    # 到店處理狀況
 

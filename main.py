@@ -24,9 +24,8 @@ from dao.model.Base_Model import Base_Model
 from dao.sql.sql_SQLAlchemy import engine
 
 
-
 # 啟動 uvicorn 伺服器後，會針對所設定的資料庫( e_web )，依據各個 Model 檔，建立所有資料表
-# Base_Model.metadata.create_all( engine )
+Base_Model.metadata.create_all( engine )
 
 app = FastAPI(
                 title     = "客制網頁" ,

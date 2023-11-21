@@ -29,6 +29,7 @@ engine = create_engine( f"mysql://{ username }:{ password }@{ host }/{ database 
 SessionLocal = sessionmaker( bind = engine )
 
 
+
 # 依賴函式
 async def get_db() :
 

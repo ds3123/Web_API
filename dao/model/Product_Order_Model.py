@@ -21,9 +21,10 @@ class Product_Order_Model( Base_Model ) :
 
     id             = Column( Integer , primary_key = True , autoincrement = True ) # 主鍵
 
-    account_id     = Column( Integer , ForeignKey( "accounts.id" ) ,  nullable = False , comment = "所屬店家 id" )    # 所屬店家 id
-    customer_id    = Column( Integer , ForeignKey( "customers.id" ) , nullable = False , comment = "所屬客人 id" )    # 所屬客人 id
-    product_id     = Column( Integer , ForeignKey( "products.id" ) ,  nullable = False , comment = "所屬商品項目 id" ) # 所屬商品項目 id
+    product_id     = Column( Integer , ForeignKey( "products.id"  , ondelete = "CASCADE" ) , nullable = False , comment = "所屬商品項目 id" ) # 所屬商品項目 id
+
+    account_id     = Column( Integer , ForeignKey( "accounts.id"  , ondelete = "CASCADE" ) , nullable = False , comment = "所屬店家 id" )    # 所屬店家 id
+    customer_id    = Column( Integer , ForeignKey( "customers.id" , ondelete = "CASCADE" ) , nullable = False , comment = "所屬客人 id" )    # 所屬客人 id
 
     order_quantity = Column( Integer , nullable = False , default = 1 , comment = "訂購數量" )      # 訂購數量
 

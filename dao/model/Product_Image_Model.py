@@ -20,7 +20,7 @@ class Product_Image_Model( Base_Model ) :
     __table_args__ = { "comment": "商品項目 : 圖片" }  # 資料表備註
 
     id         = Column( Integer , primary_key = True , autoincrement = True ) # 主鍵
-    product_id = Column( Integer , ForeignKey( "products.id" ) , nullable = False , comment = "所屬商品項目 id" ) # 所屬商品項目 id
+    product_id = Column( Integer , ForeignKey( "products.id" , ondelete = "CASCADE" ) , nullable = False , comment = "所屬商品項目 id" ) # 所屬商品項目 id
 
     url        = Column( String( 150 ) , unique = True , nullable = False , comment = "所屬商品項目 id" )  # 商品 _ 圖片 url
 

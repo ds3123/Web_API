@@ -20,10 +20,10 @@ class Plan_Order_Model( Base_Model ) :
 
     id             = Column( Integer , primary_key = True, autoincrement = True )  # 主鍵
 
-    account_id     = Column( Integer , ForeignKey( "accounts.id" )  , nullable = False , comment = "所屬店家 id" ) # 所屬店家 id
-    plan_id        = Column( Integer , ForeignKey( "plans.id" )     , nullable = False , comment = "所屬方案 id" ) # 所屬方案 id
-    customer_id    = Column( Integer , ForeignKey( "customers.id" ) , nullable = False , comment = "所屬客戶 id" ) # 所屬客戶 id
-    pet_id         = Column( Integer , ForeignKey( "pets.id" )      , nullable = False , comment = "所屬寵物 id" ) # 所屬寵物 id
+    plan_id        = Column( Integer , ForeignKey( "plans.id"     , ondelete = "CASCADE" ) , nullable = False, comment="所屬方案 id")  # 所屬方案 id
+    account_id     = Column( Integer , ForeignKey( "accounts.id"  , ondelete = "CASCADE" ) , nullable = False , comment = "所屬店家 id" ) # 所屬店家 id
+    customer_id    = Column( Integer , ForeignKey( "customers.id" , ondelete = "CASCADE" ) , nullable = False , comment = "所屬客戶 id" ) # 所屬客戶 id
+    pet_id         = Column( Integer , ForeignKey( "pets.id"      , ondelete = "CASCADE" ) , nullable = False , comment = "所屬寵物 id" ) # 所屬寵物 id
 
     plan_price     = Column( Integer , nullable = False , comment = "方案 _ 基本價格" ) # 方案 _ 基本價格
     adjust_amount  = Column( Integer , comment = "方案 _ 調整金額" )                    # 方案 _ 調整金額
@@ -39,14 +39,15 @@ class Plan_Order_Model( Base_Model ) :
     created_at     = Column( TIMESTAMP , nullable = False , server_default = func.now() )  # 建立時間
     updated_at     = Column( TIMESTAMP , nullable = False , server_default = func.current_timestamp() , onupdate = func.current_timestamp() ) # 修改時間
 
+
     # [ 關聯 ]
-    account        = relationship( "Account_Model"  , back_populates = "plan_order"  ) # 店家帳號
-    plan           = relationship( "Plan_Model"     , back_populates = "plan_order"  ) # 所屬方案
+    account        = relationship( "Account_Model"     , back_populates = "plan_order" ) # 店家帳號
+    plan           = relationship( "Plan_Model"        , back_populates = "plan_order" ) # 所屬方案
 
-    customer       = relationship( "Customer_Model" , back_populates = "plan_order"  ) # 購買客人
-    pet            = relationship( "Pet_Model"      , back_populates = "plan_order"  ) # 所屬寵物
+    customer       = relationship( "Customer_Model"    , back_populates = "plan_order" ) # 購買客人
+    pet            = relationship( "Pet_Model"         , back_populates = "plan_order" ) # 所屬寵物
 
-    plan_record    = relationship( "Plan_Record_Model" , back_populates = "plan_order"  ) # 該方案使用紀錄
+    plan_record    = relationship( "Plan_Record_Model" , back_populates = "plan_order" ) # 該方案使用紀錄
 
 
 
